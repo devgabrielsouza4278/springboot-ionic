@@ -1,39 +1,53 @@
+
 package com.gabrielSouza.cursomc.dto;
 
 import java.io.Serializable;
-import java.net.URI;
 
-import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.hibernate.validator.constraints.Length;
 
-import com.gabrielSouza.cursomc.domain.Categoria;
+import com.gabrielSouza.cursomc.service.validation.ClienteInsert;
 
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 5, max = 80, message = "O tamanho deve ser entre 4 e 120 carcateres")
 	private String nome;
+
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Email(message = "Email inválido")
 	private String email;
+
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cpfOuCnpj;
+
 	private Integer tipo;
-	
+
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String logradouro;
+
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String numero;
+
 	private String complemento;
 	private String bairro;
+
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cep;
-	
+
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String telefone1;
+
 	private String telefone2;
 	private String telefone3;
-	
+
 	private Integer cidadeID;
-	
+
 	public ClienteNewDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -141,9 +155,5 @@ public class ClienteNewDTO implements Serializable {
 	public void setCidadeID(Integer cidadeID) {
 		this.cidadeID = cidadeID;
 	}
-	
-	
-	 
-	
-	
+
 }
